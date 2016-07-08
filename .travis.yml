@@ -1,14 +1,11 @@
 language: python
 python:
   - "2.7"
-  - "3.3"
-  - "3.4"
 cache: pip
 before_install:
-  sudo apt-get update
-  sudo apt-get sqlline
+  - sudo apt-get update
+  - sudo apt-get sqlline
 env:
-  - DB=sqlite
   - DB=mysql
   - DB=postgresql
 script:
