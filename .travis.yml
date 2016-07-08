@@ -4,7 +4,7 @@ python:
 cache: pip
 before_install:
   - sudo apt-get update
-  - sudo apt-get sqlline
+  - sudo apt-get install sqlline
 env:
   - DB=mysql
   - DB=postgresql
