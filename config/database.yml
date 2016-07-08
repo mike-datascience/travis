@@ -3,3 +3,13 @@ test:
   database: myapp_test
   username: travis
   encoding: utf8
+test:
+  adapter: postgresql
+  database: medscraper_test
+  username: <%= ENV['TRAVIS'] ? 'postgres' : 'MY_TEST_USERNAME' %>
+  password: <%= ENV['TRAVIS'] ? '' : 'MY_TEST_PASSWORD' %>
+# config/database.yml
+test:
+  adapter: sqlite3
+  database: <%= ENV['TRAVIS'] ? '":memory:"' : 'db/test.sqlite3' %>
+  timeout: 500
