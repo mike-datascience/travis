@@ -4,7 +4,17 @@ python:
   - "3.3"
   - "3.4"
 cache: pip
-install:
-  - pip install -r requirements.txt
+before_install:
+  sudo apt-get update
+  sudo apt-get sqlline
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
 script:
-  - py.test -v
+  - mysql -e 'show databases'
+  - psql -c 'show databases' -U postgres
+before_script:
+#  - cp config/database.travis.yml config/database.yml
+  - mysql -e 'create database strano_test'
+  - psql -c 'create database strano_test' -U postgres
