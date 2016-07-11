@@ -20,4 +20,4 @@ script:
   # - mysql -e 'show databases'
   # - psql -c 'show databases' -U postgres
   - mvn package
-  - java -jar target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar --help
+  - java -jar target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar -d com.mysql.jdbc.Driver --run test.sql
