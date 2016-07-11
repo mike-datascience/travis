@@ -7,17 +7,17 @@ branches:
 notifications:
   email: false
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install maven
+  # - sudo apt-get update
+  # - sudo apt-get install maven
 env:
   - DB=mysql
   - DB=postgresql
+before_script:
+  #  - cp config/database.travis.yml config/database.yml
+  # - mysql -e 'create database strano_test'
+  # - psql -l -U postgres
 script:
-  - mysql -e 'show databases'
-  - psql -c 'show databases' -U postgres
+  # - mysql -e 'show databases'
+  # - psql -c 'show databases' -U postgres
   - mvn package
   - java -jar target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar --help
-before_script:
-#  - cp config/database.travis.yml config/database.yml
-  - mysql -e 'create database strano_test'
-  - psql -l -U postgres
