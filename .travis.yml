@@ -22,4 +22,5 @@ script:
   - mvn package
   - mvn dependency:get -Dartifact=mysql:mysql-connector-java:5.1.18
   - cp $HOME/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar $TRAVIS_BUILD_DIR/target
-  - java -jar $TRAVIS_BUILD_DIR/target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar -d com.mysql.jdbc.Driver --run test.sql
+  - ls
+  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver --run test.sql
