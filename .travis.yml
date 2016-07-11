@@ -20,4 +20,5 @@ script:
   # - mysql -e 'show databases'
   # - psql -c 'show databases' -U postgres
   - mvn package
-  - java -jar target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar -d com.mysql.jdbc.Driver --run test.sql
+  - mvn dependency:get -Dartifact=mysql:mysql-connector-java:5.1.18
+  - java -jar $TRAVIS_BUILD_DIR/target/sqlline-1.1.10-SNAPSHOT-jar-with-dependencies.jar -d com.mysql.jdbc.Driver --run test.sql
