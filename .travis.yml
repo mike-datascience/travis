@@ -25,5 +25,5 @@ script:
   - mvn dependency:get -Dartifact=mysql:mysql-connector-java:5.1.18
   - cp $HOME/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar $TRAVIS_BUILD_DIR/target
   - ls $TRAVIS_BUILD_DIR/target
-  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver -u jdbc:mysql://localhost:3306 -n root -f test.sql
+  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver -u jdbc:mysql://localhost:3306/strano_test -n root -f test.sql
   - mysql -e 'use strano_test;select count(*) from items'
