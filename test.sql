@@ -1,1 +1,1 @@
-select * from sample;
+show databases;
