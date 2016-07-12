@@ -1,1 +1,2 @@
-show databases;
+use strano_test
+show tables;
