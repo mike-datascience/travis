@@ -9,8 +9,10 @@ notifications:
 before_install:
   # - sudo apt-get update
   # - sudo apt-get install maven
-env:
-  - DB=mysql
+# env:
+#   - DB=mysql
+services:
+  - mysql
 #  - DB=postgresql
 before_script:
   #  - cp config/database.travis.yml config/database.yml
