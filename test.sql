@@ -1,1 +1,2 @@
+use mysql;
 show tables;
