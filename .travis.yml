@@ -17,7 +17,7 @@ services:
 before_script:
   #  - cp config/database.travis.yml config/database.yml
   - mysql -e 'create database strano_test'
-  - psql -c "create database strano_test"
+  - psql -U postgres -c "create database strano_test"
   # - psql -l -U postgres
 script:
   # - mysql -e 'show databases'
