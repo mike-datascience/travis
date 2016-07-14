@@ -27,9 +27,9 @@ script:
   # - psql -c 'show databases' -U postgres
   - mvn package
   - mvn dependency:get -Dartifact=mysql:mysql-connector-java:5.1.18
-  - mvn install:install-file -DgroupId=postgresql -DartifactId=postgresql -Dversion=9.1.901.jdbc4 -Dpackaging=jar -Dfile=/tmp
+  - mvn install:install-file -DgroupId=postgresql -DartifactId=postgresql -Dversion=9.1.901.jdbc4 -Dpackaging=jar -Dfile=/tmp/postgresql-9.1.901.jdbc4.jar
   - cp $HOME/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar $TRAVIS_BUILD_DIR/target
-  - cp /tmp/postgres*.jar $TRAVIS_BUILD_DIR/target
+  - cp /tmp/postgresql-9.1.901.jdbc4.jar $TRAVIS_BUILD_DIR/target
   - ls $TRAVIS_BUILD_DIR/target
   - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver -u jdbc:mysql://localhost:3306/strano_test -n root -f create_mysql.sql
   - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.postgresql.jdbc.Driver -u jdbc:postgresql://localhost:5432/strano_test -n root -f create_mysql.sql
