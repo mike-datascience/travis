@@ -13,16 +13,22 @@ before_install:
 #   - DB=mysql
 services:
   - mysql
-#  - DB=postgresql
+  - postgresql
 before_script:
   #  - cp config/database.travis.yml config/database.yml
   - mysql -e 'create database strano_test'
+  - psql -c "create database strano_test"
   # - psql -l -U postgres
 script:
   # - mysql -e 'show databases'
   # - psql -c 'show databases' -U postgres
   - mvn package
   - mvn dependency:get -Dartifact=mysql:mysql-connector-java:5.1.18
+  - mvn dependency:get -Dartifact=postgresql:postgresql:9.1.901.jdbc4
   - cp $HOME/.m2/repository/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar $TRAVIS_BUILD_DIR/target
+  - cp $HOME/.m2/repository/postgresql/postgresql/9.1.901.jdbc4/*.jar $TRAVIS_BUILD_DIR/target
+  - ls $TRAVIS_BUILD_DIR/target
   - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver -u jdbc:mysql://localhost:3306/strano_test -n root -f create_mysql.sql
+  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.postgresql.jdbc.Driver -u jdbc:postgresql://localhost:5432/strano_test -n root -f create_mysql.sql
   - mysql -e 'use strano_test;select count(*) from items'
+  - psql -c 'select count(*) from items'
