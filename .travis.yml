@@ -32,6 +32,6 @@ script:
   - cp $HOME/.m2/repository/org/postgresql/postgresql/9.4.1208.jre7/postgresql-9.4.1208.jre7.jar $TRAVIS_BUILD_DIR/target
   - ls $TRAVIS_BUILD_DIR/target
   - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.mysql.jdbc.Driver -u jdbc:mysql://localhost:3306/strano_test -n root -f create_mysql.sql
-  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d com.postgresql.jdbc.Driver -u jdbc:postgresql://localhost:5432/strano_test -n root -f create_mysql.sql
+  - java -Djava.ext.dirs=$TRAVIS_BUILD_DIR/target sqlline.SqlLine -d org.postgresql.Driver -u jdbc:postgresql://localhost:5432/strano_test -n root -f create_mysql.sql
   - mysql -e 'use strano_test;select count(*) from items'
   - psql -c 'select count(*) from items'
